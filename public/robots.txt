@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# After setting the domain in src/app/data/site.config.ts, add:
+# Sitemap: https://YOUR-DOMAIN/sitemap.xml
