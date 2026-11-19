@@ -1,0 +1,98 @@
+<section id="terminal" class="section container" aria-label="Terminal">
+  <!-- The terminal window is always dark, also in the light theme. -->
+  <div class="window" data-theme="dark">
+    <div class="window__bar">
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="window__title">{{ ui().terminal.title }}</span>
+    </div>
+
+    <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+    <div class="screen" #body (click)="focusInput()">
+      <div class="log" role="log" aria-live="polite" aria-relevant="additions">
+        @for (entry of entries(); track entry.id) {
+          @if (entry.kind === 'cmd') {
+            <p class="line line--cmd">
+              <span class="ps1" aria-hidden="true">guest@mb:~$</span> <span>{{ entry.text }}</span>
+            </p>
+          } @else {
+            <div class="out">
+              @for (block of entry.blocks; track $index) {
+                @switch (block.t) {
+                  @case ('text') {
+                    <p class="line" [class]="block.tone ? 'line--' + block.tone : ''">
+                      @if (block.plain) {
+                        {{ block.text }}
+                      } @else {
+                        <app-rich [text]="block.text" />
+                      }
+                    </p>
+                  }
+                  @case ('list') {
+                    <ul class="t-list">
+                      @for (item of block.items; track $index) {
+                        <li><app-rich [text]="item" /></li>
+                      }
+                    </ul>
+                  }
+                  @case ('table') {
+                    <dl class="t-table">
+                      @for (row of block.rows; track row.key) {
+                        <div class="t-row">
+                          <dt>{{ row.key }}</dt>
+                          <dd>
+                            @if (row.href) {
+                              <a [href]="row.href" target="_blank" rel="noopener">{{ row.value }}</a>
+                            } @else {
+                              {{ row.value }}
+                            }
+                          </dd>
+                        </div>
+                      }
+                    </dl>
+                  }
+                  @case ('chips') {
+                    <p class="t-chips">
+                      @for (item of block.items; track item) {
+                        <span>{{ item }}</span>
+                      }
+                    </p>
+                  }
+                }
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <div class="prompt">
+        <label class="ps1" for="terminal-input">guest@mb:~$<span class="sr-only"> {{ ui().terminal.inputLabel }}</span></label>
+        <input
+          #field
+          id="terminal-input"
+          class="prompt__input"
+          type="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          enterkeyhint="send"
+          [value]="input()"
+          (input)="onInput($any($event.target).value)"
+          (keydown)="onKeydown($event)"
+        />
+      </div>
+      @if (completions().length) {
+        <p class="completions">
+          @for (c of completions(); track c) {
+            <span>{{ c }}</span>
+          }
+        </p>
+      }
+    </div>
+
+    <div class="suggest" role="group" [attr.aria-label]="ui().terminal.suggestions">
+      @for (s of suggestions; track s) {
+        <button type="button" class="suggest__btn" (click)="execute(s)">{{ s }}</button>
+      }
+    </div>
+  </div>
+</section>
