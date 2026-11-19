@@ -1,0 +1,93 @@
+// Design tokens taken from the "03 · Terminal" mockup (dark) plus a matching light theme.
+// Any element can force a theme with data-theme="dark|light" (the terminal window stays dark).
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0d1117;
+  --bg-elevated: #161b22;
+  --bg-inset: #010409;
+  --bg-hover: #1c2129;
+  --border: #30363d;
+  --border-muted: #21262d;
+
+  --text: #c9d1d9;
+  --text-strong: #f0f6fc;
+  --text-platinum: #e6edf3;
+  --muted: #8b949e;
+
+  --green: #7ee787;
+  --blue: #79c0ff;
+  --purple: #d2a8ff;
+  --gold: #f2cc60;
+  --red: #ff7b72;
+
+  --accent-bg: #12261a;
+  --accent-border: #2b5a36;
+  --highlight-bg: rgb(126 231 135 / 0.07);
+  --focus: #79c0ff;
+
+  --btn-primary-bg: #238636;
+  --btn-primary-bg-hover: #2ea043;
+  --btn-primary-text: #ffffff;
+
+  --shadow-lg: 0 16px 48px rgb(1 4 9 / 0.6);
+  --grid-dot: rgb(240 246 252 / 0.06);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --bg-elevated: #f6f8fa;
+  --bg-inset: #eff2f5;
+  --bg-hover: #eef1f4;
+  --border: #d0d7de;
+  --border-muted: #d8dee4;
+
+  --text: #2f363d;
+  --text-strong: #1f2328;
+  --text-platinum: #57606a;
+  --muted: #59636e;
+
+  --green: #1a7f37;
+  --blue: #0969da;
+  --purple: #8250df;
+  --gold: #9a6700;
+  --red: #cf222e;
+
+  --accent-bg: #dafbe1;
+  --accent-border: #4ac26b;
+  --highlight-bg: rgb(26 127 55 / 0.07);
+  --focus: #0969da;
+
+  --btn-primary-bg: #1f883d;
+  --btn-primary-bg-hover: #1a7f37;
+  --btn-primary-text: #ffffff;
+
+  --shadow-lg: 0 16px 40px rgb(31 35 40 / 0.12);
+  --grid-dot: rgb(31 35 40 / 0.07);
+}
+
+:root {
+  --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas,
+    monospace;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+
+  --header-h: 64px;
+  --container: 1160px;
+  --gutter: 16px;
+
+  @media (min-width: 640px) {
+    --gutter: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    --gutter: 40px;
+  }
+}

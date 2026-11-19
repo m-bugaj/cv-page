@@ -1,0 +1,231 @@
+// Shared building blocks reused by many components (kept global on purpose).
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: 56px;
+
+  @media (min-width: 768px) {
+    padding-block: 80px;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+// "// Title ─────" heading from the mockup
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-strong);
+  letter-spacing: 0.01em;
+
+  &::before {
+    content: '//';
+    color: var(--green);
+  }
+
+  &::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  &--small {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &--accent {
+    color: var(--green);
+    border-color: var(--accent-border);
+    background: var(--accent-bg);
+  }
+
+  &--sm {
+    padding: 1px 7px;
+    font-size: 12px;
+  }
+}
+
+button.chip {
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    border-color: var(--muted);
+    color: var(--text-strong);
+  }
+
+  &[aria-pressed='true'] {
+    color: var(--bg);
+    background: var(--green);
+    border-color: var(--green);
+  }
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.date {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--green);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--purple);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.link {
+  color: var(--blue);
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.arrow-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+}
+
+// Bullet list with the green "›" marker
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+
+  > li {
+    position: relative;
+    padding-left: 20px;
+    border-radius: var(--radius-sm);
+    transition:
+      opacity 0.2s ease,
+      background-color 0.2s ease;
+
+    &::before {
+      content: '›';
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+  }
+}
+
+// Skill filter states
+.is-dimmed {
+  opacity: 0.32;
+}
+
+.is-match {
+  background: var(--highlight-bg);
+  box-shadow: inset 2px 0 0 var(--green);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-strong);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    color: var(--text-strong);
+    background: var(--bg-hover);
+    border-color: var(--muted);
+  }
+
+  &--primary {
+    background: var(--btn-primary-bg);
+    border-color: transparent;
+    color: var(--btn-primary-text);
+
+    &:hover {
+      color: var(--btn-primary-text);
+      background: var(--btn-primary-bg-hover);
+      border-color: transparent;
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Scroll reveal (class added only in the browser, see RevealDirective)
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
