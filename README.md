@@ -57,10 +57,11 @@ PDF-y wygenerowano z makiety „03 · Terminal” (Chrome headless, A4). Po zmia
 
 ## Przed pierwszym publicznym uruchomieniem
 
-1. Wpisz domenę w `SITE.url` (`src/app/data/site.config.ts`) — wtedy pojawią się canonical, hreflang i pełne adresy Open Graph.
-2. Dodaj `public/sitemap.xml` z adresami `https://TWOJA-DOMENA/` i `https://TWOJA-DOMENA/pl/` oraz linię `Sitemap:` w `public/robots.txt`.
-3. Uzupełnij linki `youtube` i `musicBusiness` w `site.config.ts` (puste linki są po prostu ukrywane).
-4. Gdy HTTPS już działa, odkomentuj nagłówek HSTS w `public/.htaccess`.
+1. ✅ Domena `https://michalbugaj.pl` jest w `SITE.url` (`src/app/data/site.config.ts`), `public/sitemap.xml` i `public/robots.txt`.
+   Przy zmianie domeny popraw te trzy miejsca.
+2. Uzupełnij linki `youtube` i `musicBusiness` w `site.config.ts` (puste linki są po prostu ukrywane).
+3. Gdy HTTPS stabilnie działa na `michalbugaj.pl` i `www.michalbugaj.pl`, włącz HSTS — w DirectAdmin
+   **albo** odkomentowując nagłówek w `public/.htaccess` (nie w obu miejscach naraz).
 
 ## Deploy: GitHub Actions → SSH (rsync)
 

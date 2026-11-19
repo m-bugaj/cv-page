@@ -2,9 +2,9 @@
  * Site-wide settings. Fill in the empty values before going live.
  */
 export const SITE = {
-  /** Public address without a trailing slash, e.g. 'https://michalbugaj.pl'.
+  /** Public address without a trailing slash.
    *  Used for canonical / hreflang / Open Graph URLs. Empty = those tags are skipped. */
-  url: '',
+  url: 'https://michalbugaj.pl',
 
   /** Year shown in the footer. */
   year: 2026,
