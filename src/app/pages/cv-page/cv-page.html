@@ -1,0 +1,28 @@
+<a class="skip-link" href="#main" (click)="skipToMain($event)">{{ ui().skipToContent }}</a>
+
+<app-site-header />
+
+<main id="main" tabindex="-1">
+  <app-hero />
+  <app-terminal />
+  <app-about />
+
+  <div class="container cv-grid">
+    <aside class="cv-grid__aside">
+      <div class="cv-grid__sticky">
+        <app-skills-panel />
+      </div>
+    </aside>
+    <div class="cv-grid__main">
+      <app-experience />
+      <app-projects />
+      <app-education />
+    </div>
+  </div>
+
+  <app-music />
+  <app-contact />
+</main>
+
+<app-site-footer />
+<app-filter-pill />

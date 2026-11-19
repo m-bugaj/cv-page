@@ -1,0 +1,61 @@
+main:focus {
+  outline: none;
+}
+
+// Two-column layout from the mockup: skills on the left (sticky, so the filter stays at hand),
+// experience / projects / education on the right.
+.cv-grid {
+  display: grid;
+  gap: 48px;
+  padding-block: 56px;
+
+  @media (min-width: 768px) {
+    padding-block: 80px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 56px;
+  }
+}
+
+.cv-grid__sticky {
+  @media (min-width: 1024px) {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    max-height: calc(100vh - var(--header-h) - 48px);
+    overflow-y: auto;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}
+
+.cv-grid__aside {
+  @media (min-width: 1024px) {
+    padding-right: 24px;
+    border-right: 1px solid var(--border-muted);
+  }
+}
+
+.cv-grid__main {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  min-width: 0;
+}
+
+// sections between the hero and the grid share a subtle divider
+app-about,
+app-music {
+  display: block;
+  border-top: 1px solid var(--border-muted);
+}
+
+app-music {
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.cv-grid {
+  border-top: 1px solid var(--border-muted);
+}

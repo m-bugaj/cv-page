@@ -1,0 +1,76 @@
+<header class="header">
+  <div class="container bar">
+    <a class="logo" [href]="locale.path()" (click)="go($event, 'top')" aria-label="Michał Bugaj – home">
+      <span class="logo__prompt" aria-hidden="true">&gt;_</span>
+      <span>mbugaj</span>
+    </a>
+
+    <nav class="nav" [class.nav--open]="menuOpen()" aria-label="Main" id="site-nav">
+      <ul class="nav__list">
+        @for (item of nav(); track item.id) {
+          <li>
+            <a class="nav__link" [href]="item.href" (click)="go($event, item.id)">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <nav class="lang" [attr.aria-label]="ui().header.languageLabel">
+        @for (l of langs; track l) {
+          <a
+            class="lang__link"
+            [routerLink]="langPath[l]"
+            [attr.aria-current]="locale.lang() === l ? 'page' : null"
+            [attr.hreflang]="l"
+            [attr.lang]="l"
+            >{{ l.toUpperCase() }}</a
+          >
+        }
+      </nav>
+
+      <button
+        type="button"
+        class="icon-btn theme-toggle"
+        (click)="theme.toggle()"
+        [attr.aria-label]="themeLabel()"
+        [attr.title]="themeLabel()"
+      >
+        <!-- Both icons are rendered; CSS shows the right one (no hydration mismatch). -->
+        <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+          />
+        </svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+
+      <a class="btn btn--primary cv-btn" [href]="cvHref()" download [attr.aria-label]="ui().header.downloadCv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+        </svg>
+        <span>CV.pdf</span>
+      </a>
+
+      <button
+        type="button"
+        class="icon-btn menu-btn"
+        (click)="menuOpen.set(!menuOpen())"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="site-nav"
+        [attr.aria-label]="menuOpen() ? ui().header.closeMenu : ui().header.menu"
+      >
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          @if (menuOpen()) {
+            <path d="M6 6l12 12M18 6L6 18" />
+          } @else {
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          }
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

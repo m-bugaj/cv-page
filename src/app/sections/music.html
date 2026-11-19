@@ -1,0 +1,33 @@
+<section id="music" class="section container" aria-labelledby="music-title">
+  <h2 id="music-title" class="section-title">{{ ui().sectionTitles.music }}</h2>
+
+  <div class="music">
+    <div class="music__intro" appReveal>
+      <p class="music__lead"><app-rich [text]="music().intro" /></p>
+      <ul class="records">
+        @for (r of music().records; track r.tone) {
+          <li class="record" [class]="'record--' + r.tone">
+            <span class="disc" aria-hidden="true"></span>
+            <span class="record__count">{{ r.count }}</span>
+            <span class="record__label">{{ r.label }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <ul class="cards" appReveal>
+      @for (c of cards(); track c.title) {
+        <li class="mcard">
+          <h3 class="mcard__title">{{ c.title }}</h3>
+          <p><app-rich [text]="c.text" /></p>
+          @if (c.href) {
+            <a class="link mcard__link" [href]="c.href" target="_blank" rel="noopener">
+              {{ ui().music.open }}<span class="sr-only">: {{ c.title }}</span>
+              <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</section>

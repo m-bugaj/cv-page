@@ -1,0 +1,39 @@
+<section id="top" class="hero" aria-labelledby="hero-name">
+  <div class="container hero__inner">
+    <img
+      class="hero__photo"
+      [ngSrc]="photo"
+      width="336"
+      height="336"
+      priority
+      [alt]="ui().hero.photoAlt"
+    />
+
+    <div class="hero__text">
+      <h1 id="hero-name" class="hero__name">
+        <span class="hero__prompt" aria-hidden="true">&gt;</span>
+        <span class="hero__typed" [style.--chars]="cv().name.length">{{ cv().name }}</span>
+        <span class="hero__cursor" aria-hidden="true"></span>
+      </h1>
+      <p class="hero__role">{{ cv().role }}</p>
+      <p class="hero__tagline"><span aria-hidden="true">// </span>{{ cv().tagline }}</p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" [href]="cvHref()" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+          </svg>
+          {{ ui().hero.downloadCv }}
+        </a>
+        <button type="button" class="btn" (click)="openTerminal()">
+          <span class="hero__btn-prompt" aria-hidden="true">&gt;_</span>
+          {{ ui().hero.openTerminal }}
+        </button>
+      </div>
+    </div>
+
+    <div class="hero__contact">
+      <app-contact-links />
+    </div>
+  </div>
+</section>
